@@ -144,12 +144,34 @@ To request a quote, follow these steps:
    ```javascript
    // Example usage:
    const quoteParams = {
-       // Define your quote parameters here
-   }
+				'fromTokenAddress': from,
+				'toTokenAddress': to,
+				'amount': amount,
+				'fromTokenChainId': "80001",
+				'toTokenChainId': "43113", // Fuji
+		
+				'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
+			}
    
    const quoteData = await getQuote(quoteParams);
    console.log("Quote Data:", quoteData);
    ```
+These parameters define the details of the token transfer you wish to execute. Let's break down what each parameter represents:
+
+- `'fromTokenAddress'`: This should specify the address of the token you want to transfer from (the source token).
+
+- `'toTokenAddress'`: Provide the address of the token you want to transfer to (the destination token).
+
+- `'amount'`: Set the amount of the token you wish to transfer.
+
+- `'fromTokenChainId'`: This parameter represents the chain ID of the source blockchain. In this case, it's set to "80001."
+
+- `'toTokenChainId'`: Similarly, this parameter specifies the chain ID of the destination blockchain, which, in this example, is "43113" (Fuji).
+
+- `'widgetId'`: This parameter is used to identify the widget responsible for the transfer. You'll typically need to obtain a unique widget ID through contact with the Voyager team, often via Telegram or other means. For now, let's keep it as 0.
+
+With these parameters, you can now call the `getQuote` function with this `params` object to initiate a quote request for your specific token transfer. 
+
    <img width="197" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/5867052e-301e-46c6-b206-24094c19298e">
 
 
