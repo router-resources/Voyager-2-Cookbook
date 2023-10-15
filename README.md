@@ -99,11 +99,13 @@ git clone https://github.com/router-resources/Voyager-2-Cookbook
 ```
 Install the necessary packages
 
-```npm install
+```
+npm install
 ```
 Run on localhost
 
-```npm start
+```
+npm start
 ```
 
 
