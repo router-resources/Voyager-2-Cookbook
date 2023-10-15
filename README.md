@@ -109,9 +109,11 @@ npm start
 Your application will start running
 <img width="680" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/40a93d65-41bd-4544-b683-05a8b6599501">
 
-## `Explanation#1 Getting the Quote`
+Now, all you need is just 3 simple steps !
 
-The Voyager v2.0 JavaScript SDK enables you to interact with the Voyager protocol and initiate cross-chain token transfers. The first step in this process is to request a quote, which provides you with essential details about the proposed token transfer.
+## `Step#1 Getting the Quote`
+
+The Voyager v2.0 JavaScript SDK enables you to interact with the Voyager contract and initiate cross-chain token transfers. The first step in this process is to request a quote, which provides you with essential details about the proposed token transfer.
 
 To request a quote, follow these steps:
 
