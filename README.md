@@ -111,19 +111,7 @@ Your application will start running
 
 ## `Explanation#1 Getting the Quote`
 
-Certainly, here's a simple documentation for requesting a quote using the Voyager v2.0 JavaScript SDK:
-
----
-
-## Requesting a Quote with Voyager v2.0 JavaScript SDK
-
 The Voyager v2.0 JavaScript SDK enables you to interact with the Voyager protocol and initiate cross-chain token transfers. The first step in this process is to request a quote, which provides you with essential details about the proposed token transfer.
-
-### Prerequisites
-- Ensure you have the Voyager v2.0 JavaScript SDK integrated into your project.
-- You'll need the `axios` library for making HTTP requests. If it's not already part of your project, make sure to install it.
-
-### Requesting a Quote
 
 To request a quote, follow these steps:
 
@@ -149,7 +137,7 @@ To request a quote, follow these steps:
    }
    ```
 
-3. Call the `getQuote` Function: Use this function to request a quote by passing appropriate parameters.
+3. Call the `getQuote` Function: Use this function to request a quote by passing appropriate parameters.In this repository , this function is called using a a button.
 
    ```javascript
    // Example usage:
@@ -160,11 +148,12 @@ To request a quote, follow these steps:
    const quoteData = await getQuote(quoteParams);
    console.log("Quote Data:", quoteData);
    ```
+   <img width="197" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/5867052e-301e-46c6-b206-24094c19298e">
+
 
 ### Response
-The `getQuote` function returns the quote data, which typically includes details about the token transfer, such as source and destination chains, token amount, fees, and other relevant information.
+The `getQuote` function returns the quote data, which typically includes details about the token transfer, such as source and destination chains, token amount, fees, and other relevant information.Click the **Get Quote** button and go to console to see the quote data printed on console.
 
 ---
 
-This documentation provides you with the necessary steps to request a quote using the Voyager v2.0 JavaScript SDK. Make sure to customize the `quoteParams` with your specific transfer requirements.
 
