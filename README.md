@@ -39,7 +39,6 @@ npm start
 - [`Need for CrossChain ?`](#Need-for-CrossChain)
 - [`What is Voyager v2.0 ?`](#What-is-Voyager-v2.0-?)
 - [`Build Don't Talk`](#Build-Don't-Talk)
-- [`Prerequisite`](#Prerequisite)
 - [`Explanation#1 Getting the Quote`](#Explanation#1-Getting-the-Quote)
 - [`Explanation#2 Checking for Approval`](#Explanation#2-Checking-for-Approval)
 - [`Explanation#3 Executing the Transaction`](#Explanation#3-Executing-the-Transaction)
@@ -107,7 +106,65 @@ Run on localhost
 ```
 npm start
 ```
+Your application will start running
+<img width="680" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/40a93d65-41bd-4544-b683-05a8b6599501">
 
+## `Explanation#1 Getting the Quote`
 
+Certainly, here's a simple documentation for requesting a quote using the Voyager v2.0 JavaScript SDK:
 
+---
+
+## Requesting a Quote with Voyager v2.0 JavaScript SDK
+
+The Voyager v2.0 JavaScript SDK enables you to interact with the Voyager protocol and initiate cross-chain token transfers. The first step in this process is to request a quote, which provides you with essential details about the proposed token transfer.
+
+### Prerequisites
+- Ensure you have the Voyager v2.0 JavaScript SDK integrated into your project.
+- You'll need the `axios` library for making HTTP requests. If it's not already part of your project, make sure to install it.
+
+### Requesting a Quote
+
+To request a quote, follow these steps:
+
+1. Define the PATH_FINDER_API_URL: Set the PATH_FINDER_API_URL variable to the URL of the Pathfinder API for the Voyager testnet. This is where you will send your quote request.
+
+   ```javascript
+   const PATH_FINDER_API_URL = "https://api.pf.testnet.routerprotocol.com/api"
+   ```
+
+2. Create the `getQuote` Function: This function handles the quote request. It uses the `axios` library to make an HTTP GET request to the Voyager Pathfinder API.
+
+   ```javascript
+   const getQuote = async (params) => {
+       const endpoint = "v2/quote"
+       const quoteUrl = `${PATH_FINDER_API_URL}/${endpoint}`
+   
+       try {
+           const res = await axios.get(quoteUrl, { params })
+           return res.data;
+       } catch (e) {
+           console.error(`Fetching quote data from pathfinder: ${e}`)
+       }    
+   }
+   ```
+
+3. Call the `getQuote` Function: Use this function to request a quote by passing appropriate parameters.
+
+   ```javascript
+   // Example usage:
+   const quoteParams = {
+       // Define your quote parameters here
+   }
+   
+   const quoteData = await getQuote(quoteParams);
+   console.log("Quote Data:", quoteData);
+   ```
+
+### Response
+The `getQuote` function returns the quote data, which typically includes details about the token transfer, such as source and destination chains, token amount, fees, and other relevant information.
+
+---
+
+This documentation provides you with the necessary steps to request a quote using the Voyager v2.0 JavaScript SDK. Make sure to customize the `quoteParams` with your specific transfer requirements.
 
