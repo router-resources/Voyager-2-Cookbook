@@ -30,82 +30,21 @@ If you need help or have other some questions - don't hesitate to write in our d
 
 ```sh
 git clone https://github.com/router-resources/ERC20-Cookbook.git
+npm install
+npm start
 ```
 
 # 🧭 `Table of contents`
 - [🧭 Table of contents](#-table-of-contents)
-- [`What is an ERC20 Token ?`](#What-is-an-ERC20-Token-?)
-- [`How to make a simple ERC20 Token ?`](#How-to-make-a-simple-ERC20-Token-?)
 - [`Need for CrossChain ?`](#Need-for-CrossChain)
-- [`What is a CrossChain ERC20 Token ?`](#What-is-CrossChain-ERC20-Token-?)
-- [`Understanding Router CrossTalk`](#Understanding-Router-CrossTalk)
-- [`CrossTalk Cheatsheet`](#Understanding-Router-CrossTalk)
-- [`Initiating the Contract`](#Initiating-the-Contract)
-- [`Creating state variables and the constructor`](#Creating-state-variables-and-the-constructor)
-- [`Setting up the Destination Contract on the Source Contract`](#Setting-up-the-Destination-Contract-on-the-Source-Contract)
-- [`Transferring tokens from a source chain to a destination chain`](#Transferring-tokens-from-a-source-chain-to-a-destination-chain)
-- [`Handling a cross-chain request`](#Handling-a-cross-chain-request)
-- [`Getting metadata for the request`](#Getting-metadata-for-the-request)
-- [`Handling the acknowledgement received from destination chain`](#Handling-the-acknowledgement-received-from-destination-chain)
+- [`What is Voyager v2.0 ?`](#What-is-Voyager-v2.0-?)
+- [`Build Don't Talk`](#Build-Don't-Talk)
+- [`Prerequisite`](#Prerequisite)
+- [`Explanation#1 Getting the Quote`](#Explanation#1-Getting-the-Quote)
+- [`Explanation#2 Checking for Approval`](#Explanation#2-Checking-for-Approval)
+- [`Explanation#3 Executing the Transaction`](#Explanation#3-Executing-the-Transaction)
 - [`Full Code`](#Full-Code)
 - [🚀 Steps](#-quick-start)
-
-## `What is an ERC20 Token ?`
-
-![_117548721_nfts2](https://ph-files.imgix.net/a384cba0-ea83-4b99-b92b-06ab3639b493.gif?auto=format)
-
-ERC20 Tokens are digital assets that are created using the Ethereum blockchain technology. They are programmable tokens that can be used to represent various types of assets, such as loyalty points, shares of stock, or even cryptocurrencies. ERC20 Tokens are fungible, which means that each token has the same value and can be exchanged for another token of the same value.
-
-The "ERC20" part of the name refers to the technical standard that is used to create and manage these tokens. This standard defines the rules for creating new tokens and the functions that can be used to transfer and manage them.
-
-## `How to make a simple ERC20 Token ?`
-
-![ERC20](https://moralis.io/wp-content/uploads/2021/08/21_08_How-to-Create-Your-Own-ERC-20-Token-in-10-Minutes.jpg)
-
-ERC20 is a standard for creating fungible tokens on the Ethereum blockchain. The ERC20 standard is like a set of rules that all tokens on the Ethereum blockchain must follow. Think of it like a recipe for making a soup - you need certain ingredients and instructions to make sure it turns out right.
-
-ERC20 defines a specific set of functions that tokens must have, like the ability to be transferred from one address to another, the ability to check the token balance of an address, and the ability to approve another address to transfer tokens on behalf of the owner. These functions are like different steps in the recipe.
-
-Some of the functions included in the ERC20 standard are:
-
-**totalSupply:** This function returns the total number of tokens in existence.
-
-**balanceOf:** This function returns the token balance of a specific address.
-
-**transfer:** This function allows the owner of a token to transfer tokens to another address.
-
-**approve:** This function allows an address to approve another address to transfer tokens on its behalf.
-
-**allowance:** This function returns the amount of tokens that an approved address is allowed to transfer.
-
-**transferFrom:** This function allows an approved address to transfer tokens on behalf of the owner.
-
-Instead of writing all the code for creating an ERC20 token from scratch, developers can use OpenZeppelin's pre-written code to make their own tokens. This can save a lot of time and effort and can also help ensure that the code works correctly and is secure.
-
-With OpenZeppelin, developers can just follow the pre-written code to create their own ERC20 tokens without having to start from scratch. It's kind of like using pre-made ingredients to cook a meal - instead of making each ingredient from scratch, you can just use pre-made ingredients to cook something faster and easier.
-
-**Simple ERC20 contract using Openzeppelin**
-
-```sh
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
-
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract MyToken is ERC20, ERC20Burnable, Ownable {
-    constructor() ERC20("MyToken", "MTK") {}
-
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
-    }
-}
-```
-
-
-
-You can use the above code and deploy using [Remix IDE](https://www.remix.ethereum.org) and Hurray !, you've made your own crypto currency.
 
 ## `Need for CrossChain`
 
