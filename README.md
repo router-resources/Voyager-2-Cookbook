@@ -179,5 +179,122 @@ With these parameters, you can now call the `getQuote` function with this `param
 The `getQuote` function returns the quote data, which typically includes details about the token transfer, such as source and destination chains, token amount, fees, and other relevant information.Click the **Get Quote** button and go to console to see the quote data printed on console.
 
 ---
+Certainly, here's an improved documentation guide for Step 2, which involves checking and setting the allowance for token transfers within the Voyager v2.0 system:
+
+---
+
+## Step 2: Check and Set Token Allowance for Voyager v2.0
+
+In Step 2 of using Voyager v2.0, you'll verify and configure the allowance for token transfers. This process allows Router's swap or transfer contract to safely move tokens on your behalf between blockchain networks.
+
+```
+
+import { ethers, Contract } from 'ethers'
+
+// ERC20 Contract ABI for "Approve" and "Allowance" functions
+const erc20_abi = [
+    {
+        "name": "approve",
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "name": "allowance",
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }
+        ],
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+];
+
+// Fetch the current allowance and update if needed
+const checkAndSetAllowance = async (wallet, tokenAddress, approvalAddress, amount) => {
+    // Transactions with the native token don't need approval
+    if (tokenAddress === ethers.constants.AddressZero) {
+        return
+    }
+
+    const erc20 = new Contract(tokenAddress, erc20_abi, wallet);
+    const allowance = await erc20.allowance(await wallet.getAddress(), approvalAddress);
+    if (allowance.lt(amount)) {
+        const approveTx = await erc20.approve(approvalAddress, amount, {gasPrice: await wallet.provider.getGasPrice()});
+        try {
+            await approveTx.wait();
+            console.log(`Transaction mined succesfully: ${approveTx.hash}`)
+        }
+        catch (error) {
+            console.log(`Transaction failed with error: ${error}`)
+        }
+    }
+}
+```
+### 1. Define ERC20 Contract ABI
+
+We begin by defining the ABI (Application Binary Interface) for ERC20 tokens, specifically focusing on the "approve" and "allowance" functions. This ABI is essential for interacting with ERC20 token contracts.
+
+### 2. The `checkAndSetAllowance` Function
+
+This function checks your current allowance and, if necessary, sets a new allowance. It first checks if the token is the native token (ETH), in which case no approval is needed.
+
+### 3. Creating an ERC20 Contract
+
+Using the provided token address and the ERC20 ABI, we create an instance of the ERC20 contract. This contract represents the token you want to set an allowance for.
+
+### 4. Checking Current Allowance
+
+We retrieve your current allowance for the token. The allowance is the maximum amount the Voyager system (or any other address) can withdraw from your wallet.
+
+### 5. Setting the Allowance
+
+If the current allowance is less than the desired amount, we proceed to set a new allowance. We initiate an approval transaction to the ERC20 contract, granting permission to Router's swap or transfer contract to withdraw tokens on your behalf.
+
+### 6. Handling Transactions
+
+The code handles the approval transaction, monitors its status, and logs the transaction hash upon successful confirmation.
+
+When the button is clicked your signer (wallet) is set up and the `checkAndSetAllowance` function is called with the required parameters. You can find it in quote.allowanceTo in the quoteData obtained from step 1
+
+<img width="269" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/6ae5efe7-e589-4a61-95ad-37b8b5077c99">
+
+
+Please replace `"YOUR_PRIVATE_KEY"` and other placeholders with your actual private key and the specific token details.
+
+---
 
 
