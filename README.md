@@ -39,9 +39,9 @@ npm start
 - [`Need for CrossChain ?`](#Need-for-CrossChain)
 - [`What is Voyager v2.0 ?`](#What-is-Voyager-v2.0-?)
 - [`Build Don't Talk`](#Build-Don't-Talk)
-- [`Explanation#1 Getting the Quote`](#Explanation#1-Getting-the-Quote)
-- [`Explanation#2 Checking for Approval`](#Explanation#2-Checking-for-Approval)
-- [`Explanation#3 Executing the Transaction`](#Explanation#3-Executing-the-Transaction)
+- [`Step#1 Getting the Quote`](#Step#1-Getting-the-Quote)
+- [`Step#2 Checking for Approval`](#Step#2-Checking-for-Approval)
+- [`Step#3 Executing the Transaction`](#Step#3-Executing-the-Transaction)
 - [`Full Code`](#Full-Code)
 - [🚀 Steps](#-quick-start)
 
@@ -178,12 +178,7 @@ With these parameters, you can now call the `getQuote` function with this `param
 ### Response
 The `getQuote` function returns the quote data, which typically includes details about the token transfer, such as source and destination chains, token amount, fees, and other relevant information.Click the **Get Quote** button and go to console to see the quote data printed on console.
 
----
-Certainly, here's an improved documentation guide for Step 2, which involves checking and setting the allowance for token transfers within the Voyager v2.0 system:
-
----
-
-## Step 2: Check and Set Token Allowance for Voyager v2.0
+## Step#2 Checking for Approval
 
 In Step 2 of using Voyager v2.0, you'll verify and configure the allowance for token transfers. This process allows Router's swap or transfer contract to safely move tokens on your behalf between blockchain networks.
 
