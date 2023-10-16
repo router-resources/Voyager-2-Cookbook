@@ -30,8 +30,6 @@ If you need help or have other some questions - don't hesitate to write in our d
 
 ```sh
 git clone https://github.com/router-resources/ERC20-Cookbook.git
-npm install
-npm start
 ```
 
 # 🧭 `Table of contents`
