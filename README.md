@@ -297,4 +297,73 @@ Please replace `"YOUR_PRIVATE_KEY"` and other placeholders with your actual priv
 
 ---
 
+Certainly, here's a documentation guide explaining the code for Step 3, which involves executing a transaction using Voyager v2.0:
 
+---
+
+## Step 3: Executing the Transaction
+
+In this step, we will explore how to execute a transaction .This process involves sending a transaction to perform the cross-chain token transfer initiated in Step 1 and configured in Step 2.
+
+### 1. The `getTransaction` Function
+
+This function is responsible for actually executing the transaction. It takes in the following parameters
+
+- **`params`**: Parameters required for the transaction, which should include the source and destination token addresses, slippage tolerance, sender and receiver addresses, and the widget ID.
+- **`quoteData`**: Quote data obtained from Step 1.
+
+When the button is clicked, It performs the following tasks using the function defined:-
+
+```
+  const provider = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/polygon_mumbai", 80001);
+
+    const wallet = new ethers.Wallet("76313c982e5cfdc0c47e36465e5fa90e0db291667296a7bd163178b955162b13", provider)
+    
+	const params ={
+		'fromTokenAddress': from,
+		'toTokenAddress': to,
+		'amount': amount,
+		'fromTokenChainId': "80001",
+		'toTokenChainId': "43113", // Fuji
+
+		'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
+	}
+	
+	const quoteData = await getQuote(params);
+	
+
+	console.log(quoteData)
+   
+    const txResponse = await getTransaction({
+		'fromTokenAddress': from,
+		'toTokenAddress': to,
+		'fromTokenChainId': "80001",
+		'toTokenChainId': "43113", // Fuji
+
+		'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
+	}, quoteData); // params have been defined in step 1 and quoteData has also been fetched in step 1
+
+    // sending the transaction using the data given by the pathfinder
+    const tx = await wallet.sendTransaction(txResponse.txn.execution)
+    try {
+        await tx.wait();
+        console.log(`Transaction mined successfully: ${tx.hash}`)
+    }
+    catch (error) {
+        console.log(`Transaction failed with error: ${error}`)
+    }
+```
+
+- **Signer Setup**: Configures a signer using the specified JSON-RPC provider. Replace `"YOUR_PRIVATE_KEY"` with your actual private key. You can also use the `provider.getSigner()` method if you're implementing this for a user interface (UI).
+
+- **Retrieve Transaction Data**: Calls the `getTransaction` function with the necessary parameters to fetch the transaction data from the Voyager system.
+
+- **Send Transaction**: Initiates the transaction using the data obtained from the Voyager system.
+
+- **Transaction Handling**: Monitors the transaction status. If the transaction is successfully mined, it logs the transaction hash. If there is an error, it logs an error message.
+
+Please replace `"YOUR_PRIVATE_KEY"` with your actual private key and ensure that you have the required parameters, including `params` and `quoteData` obtained from Step 1.
+
+---
+<img width="182" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/7ea56614-6412-43f5-aab8-5e28aa044ff8">
+.
