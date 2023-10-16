@@ -290,12 +290,6 @@ When the button is clicked your signer (wallet) is set up and the `checkAndSetAl
 
 Please replace `"YOUR_PRIVATE_KEY"` and other placeholders with your actual private key and the specific token details.
 
----
-
-Certainly, here's a documentation guide explaining the code for Step 3, which involves executing a transaction using Voyager v2.0:
-
----
-
 ## Step 3: Executing the Transaction
 
 In this step, we will explore how to execute a transaction .This process involves sending a transaction to perform the cross-chain token transfer initiated in Step 1 and configured in Step 2.
