@@ -29,7 +29,7 @@ If you need help or have other some questions - don't hesitate to write in our d
 # 🤝 `Clone or fork this repository`
 
 ```sh
-git clone https://github.com/router-resources/ERC20-Cookbook.git
+https://github.com/router-resources/Voyager-2-Cookbook
 ```
 
 # 🧭 `Table of contents`
