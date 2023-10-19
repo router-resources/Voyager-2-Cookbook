@@ -69,6 +69,9 @@ Run on localhost
 npm start
 ```
 Your application will start running
+
+![gif](https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/7add0a31-99d0-4d16-9e7d-9f8a3390bfb7)
+
 <img width="680" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/40a93d65-41bd-4544-b683-05a8b6599501">
 
 Now, all you need is just 3 simple steps !
