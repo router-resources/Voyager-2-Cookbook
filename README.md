@@ -330,7 +330,7 @@ When the button is clicked, It performs the following tasks using the function d
 
 - **Retrieve Transaction Data**: Calls the `getTransaction` function with the necessary parameters to fetch the transaction data from the Voyager system.
 
-  ```
+```
 const getTransaction = async (params, quoteData) => {
 		const endpoint = "v2/transaction"
 		const txDataUrl = `${PATH_FINDER_API_URL}/${endpoint}`
@@ -354,12 +354,12 @@ const getTransaction = async (params, quoteData) => {
 	}
   ```
 
-- **Send Transaction**: Initiates the transaction using the data obtained from the Voyager system.
 
-- **Transaction Handling**: Monitors the transaction status. If the transaction is successfully mined, it logs the transaction hash. If there is an error, it logs an error message.
+
+**Send Transaction**: Initiates the transaction using the data obtained from the Voyager system.
+
+**Transaction Handling**: Monitors the transaction status. If the transaction is successfully mined, it logs the transaction hash. If there is an error, it logs an error message.
 
 Please replace `"YOUR_PRIVATE_KEY"` with your actual private key and ensure that you have the required parameters, including `params` and `quoteData` obtained from Step 1.
 
----
 <img width="182" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/7ea56614-6412-43f5-aab8-5e28aa044ff8">
-.
