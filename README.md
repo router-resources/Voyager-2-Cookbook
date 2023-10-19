@@ -43,43 +43,7 @@ https://github.com/router-resources/Voyager-2-Cookbook
 - [`Full Code`](#Full-Code)
 - [🚀 Steps](#-quick-start)
 
-## `Need for CrossChain`
 
-**Bitcoin**
-
-Back in 2009, Bitcoin was created by an unknown person called Satoshi Nakamoto, introducing the concept of decentralization. It eliminated the need for a central authority or intermediary to verify transactions, making it possible for people to transact with each other directly.
-
-**Problem with Bitcoin**
-
-Bitcoin was not designed to support smart contracts, which limits its ability to create complex decentralized applications. 
-The inability to deploy smart contracts on the Bitcoin blockchain, makes the scope of decentralization , limited to a very small area.
-
-**Ethereum**
-
-Ethereum is a blockchain, which serves as a state machine where people can deploy smart contracts, This enables people to build Dapps (Decentralised Applications on the top of Ethereum" 
-
-**Problem with Ethereum**
-
-Ethereum is not scalable.The cost of gas fees which one need to pay to interact with the smart contracts is quite high. This hinders the businesses of the Dapps buit on the top of Ethereum.
-
-**L2 Solutions of Ethereum**
-
-Many L2 solutions for Ethereum are created, keeping in mind Ethereum isn't scalable. The gas fee which one need to pay in order to intereact with the smart conracts is significantly cheaper than Ethereum.
-
-**Problem with L2 solutions of Ethereum**
-
-L2 solutions solves the problem of scalability , but they have much lesser nodes as compared to Ethereum making them less decentralised and secure than Ethereum.
-
-**Blockchain Trilemma**
-
-So, we can clearly see, solving scalability , degrades security and decentralisation and having more decentralisation and security results in making the chain less scalable .
-
-This is known as Blockchain Trilemma, where it's not possible to ensure scalability, decentralisation and security at the same time . 
-
-**Need for Crosschain**
-
-Going CrossChain helps us leverage all these 3 features (Decentralisation + Scalabity + Security ) used for different operations performed in a single Dapp.
-This is exactly , where the Router comes in ! It is an interoperability layer to connect blockchains with a goal to integrate all the blockchains within the ecosystem. 
 
 ## `What is Voyager v2.0 ?`
 
@@ -111,7 +75,7 @@ Now, all you need is just 3 simple steps !
 
 ## `Step#1 Getting the Quote`
 
-The Voyager v2.0 JavaScript SDK enables you to interact with the Voyager contract and initiate cross-chain token transfers. The first step in this process is to request a quote, which provides you with essential details about the proposed token transfer.
+The Voyager v2.0 enables you to interact with the Voyager contract and initiate cross-chain token transfers. The first step in this process is to request a quote, which provides you with essential details about the proposed token transfer.
 
 To request a quote, follow these steps:
 
@@ -344,6 +308,30 @@ When the button is clicked, It performs the following tasks using the function d
 - **Signer Setup**: Configures a signer using the specified JSON-RPC provider. Replace `"YOUR_PRIVATE_KEY"` with your actual private key. You can also use the `provider.getSigner()` method if you're implementing this for a user interface (UI).
 
 - **Retrieve Transaction Data**: Calls the `getTransaction` function with the necessary parameters to fetch the transaction data from the Voyager system.
+
+  ```
+const getTransaction = async (params, quoteData) => {
+		const endpoint = "v2/transaction"
+		const txDataUrl = `${PATH_FINDER_API_URL}/${endpoint}`
+	
+		console.log(txDataUrl)
+	
+		try {
+			const res = await axios.post(txDataUrl, {
+				...quoteData,
+				fromTokenAddress: params.fromTokenAddress,
+				toTokenAddress: params.toTokenAddress,
+				slippageTolerance: 0.5,
+				senderAddress: account,
+				receiverAddress: account,
+				widgetId: params.widgetId
+			})
+			return res.data;
+		} catch (e) {
+			console.error(`Fetching tx data from pathfinder: ${e}`)
+		}    
+	}
+  ```
 
 - **Send Transaction**: Initiates the transaction using the data obtained from the Voyager system.
 
