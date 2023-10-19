@@ -72,9 +72,27 @@ Your application will start running
 
 ![gif](https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/7add0a31-99d0-4d16-9e7d-9f8a3390bfb7)
 
-<img width="680" alt="image" src="https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/40a93d65-41bd-4544-b683-05a8b6599501">
+## `How to build using Voyager ?`
 
-Now, all you need is just 3 simple steps !
+It's very easy to integrate Voyager in your dapp. All you need is a 20 lines of copy paste code ! **Clone this repository**,hit **npm install** to install all the neccessary package and libraries and hit **npm start** to start the demo dapp. All you need to do is change some parameters based on the dapp that you are building . 
+
+This Demo app demonstrate how to use Voyager to transsfer USDT from Polygon Mumbai to Avalanche Fuji. Note, this dapp is just made for demonstration purpose. After having this dapp code on your local system, you can modify it (change thee parameters) based on the dapp you want to build.
+
+After you have run the dapp on your localhost, it's time to undertand how does the dapp works.
+
+All you need is just 3 easy steps to integrate Voyager into any dapp :-
+
+**Step1: Get the Quote**
+
+**Step2: Check and set allowance**
+
+**Step3: Execute the transaction**
+
+![Untitled Workspace](https://github.com/router-resources/Voyager-2-Cookbook/assets/124175970/0e7775f5-cf4f-41b1-a57d-bfc57e2fc44f)
+
+
+All these steps and very easy to understand and also you don't need to code as when you'll clone the repoitory ,you'll find all these steps are already implemented for you. All you neeed to do is understand what each step is.
+
 
 ## `Step#1 Getting the Quote`
 
