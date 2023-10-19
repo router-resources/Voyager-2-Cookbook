@@ -73,7 +73,7 @@ Your application will start running
 
 ## `How to build using Voyager ?`
 
-It's very easy to integrate Voyager in your dapp. All you need is a 20 lines of copy paste code ! **Clone this repository**,hit **npm install** to install all the neccessary package and libraries and hit **npm start** to start the demo dapp. All you need to do is change some parameters based on the dapp that you are building. You find all the suppoted chains and assets ![ here](https://docs.routerprotocol.com/develop/voyager/voyager-v2.0/supported-chains-tokens)
+It's very easy to integrate Voyager in your dapp. All you need is a 20 lines of copy paste code ! **Clone this repository**,hit **npm install** to install all the neccessary package and libraries and hit **npm start** to start the demo dapp. All you need to do is change some parameters based on the dapp that you are building. You find all the suppoted chains and assets [ here](https://docs.routerprotocol.com/develop/voyager/voyager-v2.0/supported-chains-tokens)
 
 This Demo app demonstrate how to use Voyager to transsfer USDT from Polygon Mumbai to Avalanche Fuji. Note, this dapp is just made for demonstration purpose. After having this dapp code on your local system, you can modify it (change thee parameters) based on the dapp you want to build.
 
