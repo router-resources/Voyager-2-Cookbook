@@ -33,15 +33,14 @@ https://github.com/router-resources/Voyager-2-Cookbook
 ```
 
 # 🧭 `Table of contents`
-- [🧭 Table of contents](#-table-of-contents)
-- [`Need for CrossChain ?`](#Need-for-CrossChain)
-- [`What is Voyager v2.0 ?`](#What-is-Voyager-v2.0-?)
-- [`Build Don't Talk`](#Build-Don't-Talk)
-- [`Step#1 Getting the Quote`](#Step#1-Getting-the-Quote)
-- [`Step#2 Checking for Approval`](#Step#2-Checking-for-Approval)
-- [`Step#3 Executing the Transaction`](#Step#3-Executing-the-Transaction)
-- [`Full Code`](#Full-Code)
-- [🚀 Steps](#-quick-start)
+- [🧭 Table of contents]
+- [`Need for CrossChain ?`]
+- [`What is Voyager v2.0 ?`]
+- [`Build Don't Talk`]
+- [`Step#1 Getting the Quote`]
+- [`Step#2 Checking for Approval`]
+- [`Step#3 Executing the Transaction`]
+
 
 
 
