@@ -34,7 +34,6 @@ https://github.com/router-resources/Voyager-2-Cookbook
 
 # 🧭 `Table of contents`
 - [🧭 Table of contents]
-- [`Need for CrossChain ?`]
 - [`What is Voyager v2.0 ?`]
 - [`Build Don't Talk`]
 - [`Step#1 Getting the Quote`]
