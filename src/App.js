@@ -4,53 +4,7 @@ import { ethers } from 'ethers';
 import './App.css'
 
 function App() {
-	useEffect(async ()=>{
-
-		if(window.ethereum) {
-			console.log('detected');
-		
-			try {
-			  const accounts = await window.ethereum.request({
-				method: "eth_requestAccounts",
-			  });
-			  setAccount(accounts[0])
-			  console.log(accounts[0])
-			  const provider = new ethers.providers.Web3Provider(window.ethereum);
-			  const provider1 = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/polygon_mumbai", 80001);
-			  const provider2 = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/avalanche_fuji", 43113);
-			  const signer = provider.getSigner();
-		
-			  
-		
-			  
-		
-			  const contract = new ethers.Contract(
-				  from,
-				  erc20_abi,
-				  provider1
-			  );
-			  
-		
-			  let balance = await contract.balanceOf(accounts[0])
-		
-			  console.log(ethers.utils.formatEther(balance)*Math.pow(10,6));
-			  setPolygonBalance(ethers.utils.formatEther(balance)*Math.pow(10,6))
-			  const contract2 = new ethers.Contract(
-				to,
-				erc20_abi,
-				provider2
-			);
-			balance = await contract2.balanceOf(accounts[0])
-			  console.log(ethers.utils.formatEther(balance)*Math.pow(10,12));
-			  setAvalancheBalance(ethers.utils.formatEther(balance)*Math.pow(10,12))
-		
-			}
-			catch(err) {
-			  console.log(err)
-			}
-		  }
-		
-				},[])
+	
 	 const from="0x22bAA8b6cdd31a0C5D1035d6e72043f4Ce6aF054";
 	 const to="0xb452b513552aa0B57c4b1C9372eFEa78024e5936";
 	 const [amount,setAmount]=useState(0)
@@ -717,6 +671,9 @@ function App() {
 		}
 	];
 	const PATH_FINDER_API_URL = "https://api.pf.testnet.routerprotocol.com/api"
+	// Makes an HTTP GET Request to the Nitro Pathfinder API
+	// quote data, which typically includes details about the token transfer, 
+	// such as source and destination chains, token amount, fees, and other relevant information.
 	const getQuote = async (params) => {
 		const endpoint = "v2/quote"
 		const quoteUrl = `${PATH_FINDER_API_URL}/${endpoint}`
@@ -730,12 +687,14 @@ function App() {
 			console.error(`Fetching quote data from pathfinder: ${e}`)
 		}    
 	}
+	// Fetch the current allowance and update and, if necessary, sets a new allowance
 	const checkAndSetAllowance = async (wallet, tokenAddress, approvalAddress, amount) => {
 		// Transactions with the native token don't need approval
 		if (tokenAddress === ethers.constants.AddressZero) {
 			return
 		}
 	
+		// Using the provided token address and the ERC20 ABI, we create an instance of the ERC20 contract.
 		const erc20 = new ethers.Contract(tokenAddress, erc20_abi, wallet);
 		const allowance = await erc20.allowance(await wallet.getAddress(), approvalAddress);
 		if (allowance.lt(amount)) {
@@ -754,6 +713,7 @@ function App() {
 			alert("enough allowance")
 		}
 	}
+	// This function is responsible for actually executing the transaction. It takes in the following parameters
 	const getTransaction = async (params, quoteData) => {
 		const endpoint = "v2/transaction"
 		const txDataUrl = `${PATH_FINDER_API_URL}/${endpoint}`
@@ -763,12 +723,12 @@ function App() {
 		try {
 			const res = await axios.post(txDataUrl, {
 				...quoteData,
-				fromTokenAddress: params.fromTokenAddress,
-				toTokenAddress: params.toTokenAddress,
+				// fromTokenAddress: params.fromTokenAddress,
+				// toTokenAddress: params.toTokenAddress,
 				slippageTolerance: 0.5,
 				senderAddress: account,
 				receiverAddress: account,
-				widgetId: params.widgetId
+				// widgetId: params.widgetId
 			})
 			return res.data;
 		} catch (e) {
@@ -776,13 +736,13 @@ function App() {
 		}    
 	}
   return (
-	<div>
+	<div class="body">
 
 <center>
 <div class="navbar">
 	
 
-		<h1>Voyager Demo Dapp🚀</h1>
+		<h1 class="name">Router Nitro Dapp</h1>
 		<button class="button-52" onClick={async ()=>{
 
 if(window.ethereum) {
@@ -843,7 +803,7 @@ if(window.ethereum) {
 		
 		<br></br>
 		<input placeholder='Enter Amount' onChange={(e)=>{setAmount(e.target.value*Math.pow(10,12))}}></input>
-		<h2>Steps</h2>
+		<h2>Steps Involved</h2>
 		<br></br>
 {/* {amount} */}
 
@@ -856,8 +816,8 @@ if(window.ethereum) {
 				'amount': amount,
 				'fromTokenChainId': "80001",
 				'toTokenChainId': "43113", // Fuji
-		
-				'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
+        		'partnerId': "0",
+				// 'widgetId': 0, // get your unique wdiget id by contacting us on Telegram
 			}
 			
 			const quoteData = await getQuote(params);
@@ -945,7 +905,7 @@ if(window.ethereum) {
 		}, quoteData); // params have been defined in step 1 and quoteData has also been fetched in step 1
 	
 		// sending the transaction using the data given by the pathfinder
-		const tx = await signer.sendTransaction(txResponse.txn.execution)
+		const tx = await signer.sendTransaction(txResponse.txn)
 		try {
 			await tx.wait();
 			console.log(`Transaction mined successfully: ${tx.hash}`)
